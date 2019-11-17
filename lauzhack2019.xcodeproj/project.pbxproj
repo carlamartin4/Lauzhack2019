@@ -13,6 +13,7 @@
 		75C5E3792380D6A000ECA1CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C5E3772380D6A000ECA1CB /* Main.storyboard */; };
 		75C5E37B2380D6A100ECA1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C5E37A2380D6A100ECA1CB /* Assets.xcassets */; };
 		75C5E37E2380D6A100ECA1CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C5E37C2380D6A100ECA1CB /* LaunchScreen.storyboard */; };
+		75C5E3862380D6E800ECA1CB /* MotionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5E3852380D6E800ECA1CB /* MotionDetection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		75C5E37A2380D6A100ECA1CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75C5E37D2380D6A100ECA1CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75C5E37F2380D6A100ECA1CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75C5E3852380D6E800ECA1CB /* MotionDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				75C5E3712380D6A000ECA1CB /* AppDelegate.swift */,
 				75C5E3732380D6A000ECA1CB /* SceneDelegate.swift */,
 				75C5E3752380D6A000ECA1CB /* ViewController.swift */,
+				75C5E3852380D6E800ECA1CB /* MotionDetection.swift */,
 				75C5E3772380D6A000ECA1CB /* Main.storyboard */,
 				75C5E37A2380D6A100ECA1CB /* Assets.xcassets */,
 				75C5E37C2380D6A100ECA1CB /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75C5E3762380D6A000ECA1CB /* ViewController.swift in Sources */,
+				75C5E3862380D6E800ECA1CB /* MotionDetection.swift in Sources */,
 				75C5E3722380D6A000ECA1CB /* AppDelegate.swift in Sources */,
 				75C5E3742380D6A000ECA1CB /* SceneDelegate.swift in Sources */,
 			);
@@ -287,6 +291,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NT8PMNGTH7;
 				INFOPLIST_FILE = lauzhack2019/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +310,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NT8PMNGTH7;
 				INFOPLIST_FILE = lauzhack2019/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
