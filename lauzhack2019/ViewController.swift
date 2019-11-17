@@ -29,14 +29,7 @@ class ViewController: UIViewController {
 
         // Update the UI on a change.
         didSet {
-            let a = 1
-            //loginButton.isHighlighted = state == .loggedin  // The button text changes on highlight.
-            //stateView.backgroundColor = state == .loggedin ? .green : .red
-
-            // FaceID runs right away on evaluation, so you might want to warn the user.
-            //  In this app, show a special Face ID prompt if the user is logged out, but
-            //  only if the device supports that kind of authentication.
-            //faceIDLabel.isHidden = (state == .loggedin) || (context.biometryType != .faceID)
+            motion.logged = state == .loggedin ? true : false
         }
     }
     
@@ -58,6 +51,8 @@ class ViewController: UIViewController {
 
         // Set the initial app state. This impacts the initial state of the UI as well.
         state = .loggedout
+        // Remove this after testing
+        //motion.logged = true
         motion.startDeviceMotion()
         timer = Timer(fire: Date(), interval: 1.5, repeats: true,
         block: { (timer) in
@@ -72,8 +67,7 @@ class ViewController: UIViewController {
         //  causes the next policy evaluation to succeed without testing biometry again.
         //  That's usually not what you want.
         context = LAContext()
-
-        context.localizedCancelTitle = "Enter Username/Password"
+        context.localizedCancelTitle = "Bypass"
 
         // First check if we have the needed hardware support.
         var error: NSError?
@@ -87,11 +81,13 @@ class ViewController: UIViewController {
                     // Move to the main thread because a state update triggers UI changes.
                     DispatchQueue.main.async { [unowned self] in
                         self.state = .loggedin
+                        self.motion.login()
                     }
 
                 } else {
                     print(error?.localizedDescription ?? "Failed to authenticate")
-
+                    self.state = .loggedin
+                    self.motion.login()
                     // Fall back to a asking for username and password.
                     // ...
                 }
@@ -106,6 +102,7 @@ class ViewController: UIViewController {
     
     @IBAction func clickLogout(_ sender: Any) {
         state = .loggedout
+        self.motion.logout()
     }
     
 }

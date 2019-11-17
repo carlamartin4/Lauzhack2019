@@ -10,7 +10,7 @@ import Foundation
 import CoreMotion
 
 class MotionDetection {
-    
+    let requester = Requester()
     let motion = CMMotionManager()
     var timer: Timer?
     public var previousx: Double
@@ -20,6 +20,7 @@ class MotionDetection {
     public var y: Double
     public var z: Double
     public var status: String
+    public var logged = false
     let threshold: Double = Double.pi / 6
     var thresholdz = 1.0
     init() {
@@ -30,6 +31,14 @@ class MotionDetection {
         y = 0
         z = 0
         status =  "nn"
+    }
+    
+    func login() {
+        self.requester.login()
+    }
+    
+    func logout() {
+        self.requester.logout()
     }
     
     func startDeviceMotion() {
@@ -44,66 +53,99 @@ class MotionDetection {
                                 if let data = self.motion.deviceMotion {
                                     // Get the attitude relative to the magnetic north reference frame.
                                     
-                                    self.previousx = Double(self.x)
-                                    self.previousy = Double(self.y)
-                                    self.previousz = Double(self.z)
-                                    self.x = data.attitude.pitch
-                                    self.y = data.attitude.roll
-                                    self.z = data.attitude.yaw
-                                    
-                                    if(self.previousz == 0)
-                                    {
-                                        self.thresholdz = self.z + self.threshold
-                                    }
-                                    
-                                    let isMobileUp = ((self.x - self.previousx) >= self.threshold) && (self.x >= self.threshold)
-                                    let isMobileDown = ((self.x - self.previousx) <= -self.threshold) && (self.x <= -self.threshold)
-                                    let isMobileRight = ((self.y - self.previousy) >= self.threshold) && (self.y >= self.threshold)
-                                    let isMobileLeft = ((self.y - self.previousy) <= -self.threshold) && (self.y <= -self.threshold)
-                                    
-                                    if isMobileUp && isMobileRight
-                                    {
-                                        self.status = "fix"
-                                    }
-                                    else if isMobileUp && isMobileLeft
-                                    {
-                                        self.status = "reset"
-                                    }
-                                    else if isMobileDown && isMobileRight
-                                    {
-                                        self.status = "speed up"
-                                    }
-                                    else if isMobileDown && isMobileLeft
-                                    {
-                                        self.status = "speed down"
-                                    }
-                                    else if isMobileUp
-                                    {
-                                        self.status = "feed feeder"
-                                    }
-                                    else if isMobileDown
-                                    {
-                                        self.status = "empty delivery"
-                                    }
-                                    else if isMobileLeft
-                                    {
-                                        self.status = "stop feeder"
-                                    }
-                                    else if isMobileRight
-                                    {
-                                        self.status = "start feeder"
-                                    }
-                                    
-                                    if (self.z.sign != self.previousz.sign)
-                                    {
-                                        if(self.z.sign == FloatingPointSign.minus)
+                                    if self.logged {
+                                        self.previousx = Double(self.x)
+                                        self.previousy = Double(self.y)
+                                        self.previousz = Double(self.z)
+                                        self.x = data.attitude.pitch
+                                        self.y = data.attitude.roll
+                                        self.z = data.attitude.yaw+3.14
+                                        
+                                        if(self.previousz == 0)
                                         {
-                                            self.z = self.z + 2*Double.pi
+                                            self.thresholdz = self.z + self.threshold
                                         }
-                                        else
+                                        
+                                        let isMobileUp = ((self.x - self.previousx) >= self.threshold) && (self.x >= self.threshold)
+                                        let isMobileDown = ((self.x - self.previousx) <= -self.threshold) && (self.x <= -self.threshold)
+                                        let isMobileRight = ((self.y - self.previousy) >= self.threshold) && (self.y >= self.threshold)
+                                        let isMobileLeft = ((self.y - self.previousy) <= -self.threshold) && (self.y <= -self.threshold)
+                                        let isMobileYawRight = ((self.z - self.previousz >= self.threshold))
+                                        let isMobileYawLeft = ((self.z - self.previousz <= -self.threshold))
+                                        
+                                        if isMobileUp && isMobileRight
                                         {
-                                            self.previousz = self.previousz + 2*Double.pi
+                                            self.status = "fix"
+                                            self.requester.fix()
                                         }
+                                        else if isMobileUp && isMobileLeft
+                                        {
+                                            self.status = "reset"
+                                            self.requester.reset()
+                                        }
+                                        else if isMobileDown && isMobileRight
+                                        {
+                                            self.status = "speed up"
+                                            self.requester.speedup()
+                                        }
+                                        else if isMobileDown && isMobileLeft
+                                        {
+                                            self.status = "speed down"
+                                            self.requester.speeddown()
+                                        }
+                                        else if isMobileUp
+                                        {
+                                            self.status = "feed feeder"
+                                            self.requester.feedfeeder()
+                                        }
+                                        else if isMobileDown
+                                        {
+                                            self.status = "empty delivery"
+                                            self.requester.emptyDelivery()
+                                        }
+                                        else if isMobileLeft
+                                        {
+                                            self.status = "stop feeder"
+                                            self.requester.stopfeeder()
+                                        }
+                                        else if isMobileRight
+                                        {
+                                            self.status = "start feeder"
+                                            self.requester.startfeeder()
+                                        }
+                                        /*if (self.z.sign != self.previousz.sign)
+                                        {
+                                            if(self.z.sign == FloatingPointSign.minus)
+                                            {
+                                                self.z = self.z + 2*Double.pi
+                                                if isMobileYawRight
+                                                {
+                                                    self.status = "service 2"
+                                                }
+                                                
+                                            }
+                                            else
+                                            {
+                                                self.previousz = self.previousz + 2*Double.pi
+                                                if isMobileYawRight
+                                                {
+                                                    self.status = "service 2"
+                                                }
+                                            }*/
+                                        else if isMobileYawRight
+                                        {
+                                            self.status = "Service 1"
+                                        }
+                                        else if isMobileYawLeft
+                                        {
+                                            self.status = "Service 2"
+                                        }
+                                        else {
+                                            self.status = "No movement"
+                                        }
+                                    }
+                                    else {
+                                        self.status = "Login first"
                                     }
                                 }
             })

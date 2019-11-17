@@ -14,6 +14,7 @@
 		75C5E37B2380D6A100ECA1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75C5E37A2380D6A100ECA1CB /* Assets.xcassets */; };
 		75C5E37E2380D6A100ECA1CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75C5E37C2380D6A100ECA1CB /* LaunchScreen.storyboard */; };
 		75C5E3862380D6E800ECA1CB /* MotionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5E3852380D6E800ECA1CB /* MotionDetection.swift */; };
+		75C5E3882380E03A00ECA1CB /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5E3872380E03A00ECA1CB /* Requester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		75C5E37D2380D6A100ECA1CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75C5E37F2380D6A100ECA1CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75C5E3852380D6E800ECA1CB /* MotionDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDetection.swift; sourceTree = "<group>"; };
+		75C5E3872380E03A00ECA1CB /* Requester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				75C5E3732380D6A000ECA1CB /* SceneDelegate.swift */,
 				75C5E3752380D6A000ECA1CB /* ViewController.swift */,
 				75C5E3852380D6E800ECA1CB /* MotionDetection.swift */,
+				75C5E3872380E03A00ECA1CB /* Requester.swift */,
 				75C5E3772380D6A000ECA1CB /* Main.storyboard */,
 				75C5E37A2380D6A100ECA1CB /* Assets.xcassets */,
 				75C5E37C2380D6A100ECA1CB /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 				75C5E3762380D6A000ECA1CB /* ViewController.swift in Sources */,
 				75C5E3862380D6E800ECA1CB /* MotionDetection.swift in Sources */,
 				75C5E3722380D6A000ECA1CB /* AppDelegate.swift in Sources */,
+				75C5E3882380E03A00ECA1CB /* Requester.swift in Sources */,
 				75C5E3742380D6A000ECA1CB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
