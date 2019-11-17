@@ -75,7 +75,7 @@ class MotionDetection {
                                         
                                         if isMobileUp && isMobileRight
                                         {
-                                            self.status = "fix waste"
+                                            self.status = "fixwaste"
                                             self.requester.fix()
                                         }
                                         else if isMobileUp && isMobileLeft
@@ -85,32 +85,32 @@ class MotionDetection {
                                         }
                                         else if isMobileDown && isMobileRight
                                         {
-                                            self.status = "speed up"
+                                            self.status = "speedup"
                                             self.requester.speedup()
                                         }
                                         else if isMobileDown && isMobileLeft
                                         {
-                                            self.status = "speed down"
+                                            self.status = "speeddown"
                                             self.requester.speeddown()
                                         }
                                         else if isMobileUp
                                         {
-                                            self.status = "feed feeder"
+                                            self.status = "feedfeeder"
                                             self.requester.feedfeeder()
                                         }
                                         else if isMobileDown
                                         {
-                                            self.status = "empty delivery"
+                                            self.status = "emptydelivery"
                                             self.requester.emptyDelivery()
                                         }
                                         else if isMobileLeft
                                         {
-                                            self.status = "stop feeder"
+                                            self.status = "stopfeeder"
                                             self.requester.stopfeeder()
                                         }
                                         else if isMobileRight
                                         {
-                                            self.status = "start feeder"
+                                            self.status = "startfeeder"
                                             self.requester.startfeeder()
                                         }
                                         /*if (self.z.sign != self.previousz.sign)
@@ -134,17 +134,18 @@ class MotionDetection {
                                             }*/
                                         else if isMobileYawRight
                                         {
-                                            self.status = "Service Ejector"
+                                            self.status = "ServiceEjector"
                                             self.requester.fixejector()
                                         }
                                         else if isMobileYawLeft
                                         {
-                                            self.status = "Service Cutter"
+                                            self.status = "ServiceCutter"
                                             self.requester.fixcutter()
                                         }
                                         else {
-                                            self.status = "No movement"
+                                            self.status = "Nomovement"
                                         }
+                                        self.requester.status(status: self.status)
                                     }
                                     else {
                                         self.status = "Login first"
