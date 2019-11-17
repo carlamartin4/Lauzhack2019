@@ -75,7 +75,7 @@ class MotionDetection {
                                         
                                         if isMobileUp && isMobileRight
                                         {
-                                            self.status = "fix"
+                                            self.status = "fix waste"
                                             self.requester.fix()
                                         }
                                         else if isMobileUp && isMobileLeft
@@ -134,11 +134,13 @@ class MotionDetection {
                                             }*/
                                         else if isMobileYawRight
                                         {
-                                            self.status = "Service 1"
+                                            self.status = "Service Ejector"
+                                            self.requester.fixejector()
                                         }
                                         else if isMobileYawLeft
                                         {
-                                            self.status = "Service 2"
+                                            self.status = "Service Cutter"
+                                            self.requester.fixcutter()
                                         }
                                         else {
                                             self.status = "No movement"
